@@ -28,12 +28,14 @@ jobs:
       
       - name: Build
         id: build
-        run: echo "Building using directory ${{ inputs.target-directory }}"
-        # Set the output using `outputs` under `steps`
-        outputs:
-          build-status: success
-            - name: Deploy
+        run: |
+          echo "Building using directory ${{ inputs.target-directory }}"
+          # Set the build-status output
+          echo "build-status=success" >> $GITHUB_ENV
+      
+      - name: Deploy
         id: deploy
-        run: echo "Deploying build artifacts"
-        outputs:
-          url: https://www.google.com
+        run: |
+          echo "Deploying build artifacts"
+          # Set the url output
+          echo "url=https://www.google.com" >> $GITHUB_ENV
