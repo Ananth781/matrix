@@ -29,11 +29,11 @@ jobs:
       - name: Build
         id: build
         run: echo "Building using directory ${{ inputs.target-directory }}"
-        # Output at the step level
-        echo "::set-output name=build-status::success"
-      
-      - name: Deploy
+        # Set the output using `outputs` under `steps`
+        outputs:
+          build-status: success
+            - name: Deploy
         id: deploy
         run: echo "Deploying build artifacts"
-        # Output at the step level
-        echo "::set-output name=url::https://www.google.com"
+        outputs:
+          url: https://www.google.com
